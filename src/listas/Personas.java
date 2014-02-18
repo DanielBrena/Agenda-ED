@@ -13,6 +13,31 @@ public class Personas {
 		this.inicio = q;
 	}
 	
+	public void eliminar(String nombre){
+		NodoPersonas q = this.inicio;
+		NodoPersonas t = null;
+		boolean band = true;
+		
+		while(q.getInfo().getNombre() != nombre && band){
+			if(q.getLiga() != null){
+				t = q;
+				q = q.getLiga();
+			}else{
+				band = false;
+			}
+		}
+		
+		if(!band){
+			System.out.println("No se encontro a la persona");
+		}else{
+			if(this.inicio == q){
+				this.inicio = q.getLiga();
+			}else{
+				t.setLiga(q.getLiga());
+			}
+		}
+		//System.out.println(this.inicio.getInfo());
+	}
 
 
 	public NodoPersonas getInicio() {

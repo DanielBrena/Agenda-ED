@@ -12,6 +12,31 @@ public class Correos {
 		this.inicio = nuevo;
 	}
 	
+	public void eliminar(String correo){
+		NodoCorreos q = this.inicio;
+		NodoCorreos t = null;
+		boolean band = true;
+		
+		while(q.getInfo() != correo &&  band){
+			if(q.getLiga() != null){
+				t = q;
+				q = q.getLiga();
+			}else{
+				band = false;
+			}
+		}
+		
+		if(!band){
+			System.out.println("No se encuentra correo");
+		}else{
+			if(this.inicio == q){
+				this.inicio = q.getLiga();
+			}else{
+				t.setLiga(q.getLiga());
+			}
+		}
+	}
+	
 	
 
 	public NodoCorreos getInicio() {

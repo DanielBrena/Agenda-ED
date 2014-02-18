@@ -24,26 +24,28 @@ public class Numeros {
 		
 	}
 	
-	public void eliminar(int indice){
-		if(indice > count()){
-			System.out.println("Se salio");
-		}else{
-			NodoNumeros q = this.inicio;
-			int cont = 1;
-			
-			NodoNumeros aux = null;
-			while(cont != indice){
-				this.inicio = q.getLiga();
-				
-				cont++;
+	public void eliminar(String numero){
+		NodoNumeros q = this.inicio;
+		NodoNumeros t = null;
+		boolean band = true;
+		
+		while(q.getInfo() != numero && band){
+			if(q.getLiga()  != null){
+				t = q;
+				q = q.getLiga();
+			}else{
+				band = false;
 			}
-			q.setLiga(this.inicio);
-			
 		}
-		/*if(this.inicio != null){
-			this.inicio = this.inicio.getLiga();
+		if(!band){
+			System.out.println("No se encuentra numero");
+		}else{
+			if(this.inicio == q){
+				this.inicio = q.getLiga();
+			}else{
+				t.setLiga(q.getLiga());
+			}
 		}
-		*/
 	}
 	
 	public NodoNumeros getInicio() {
