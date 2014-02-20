@@ -7,9 +7,13 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import listas.Personas;
+
 public class Ventana extends JFrame {
 	Bar barra;
 	VentanaAgregar agregar;
+	Personas personas = new Personas();
+	
 	public Ventana(){
 		super.setLayout(null);
 		barra = new Bar();
@@ -24,7 +28,9 @@ public class Ventana extends JFrame {
 				agregar = new VentanaAgregar();
 				agregar.addWindowListener(new WindowAdapter(){
 					public void windowClosing(WindowEvent evt) {
+						personas.agregar(agregar.getPersona());
 		               activar();
+		               System.out.println(personas);
 		            }
 					
 				});
